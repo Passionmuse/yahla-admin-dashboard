@@ -97,7 +97,7 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
                                 <label for="nameWithTitle" class="form-label">Category Name</label>
                                 <input type="text" id="nameWithTitle" name="name" class="form-control" placeholder="Enter Category Name">
                             </div>
-                        </div>
+                        </div> 
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="emailWithTitle" class="form-label">Thumbnail</label>
