@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ServicePortal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class ManageCategoryController extends Controller
@@ -18,15 +19,6 @@ class ManageCategoryController extends Controller
         return view('content.serviceportal.manage_categories');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,6 +29,8 @@ class ManageCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
+        return Response()->back();
     }
 
     /**
