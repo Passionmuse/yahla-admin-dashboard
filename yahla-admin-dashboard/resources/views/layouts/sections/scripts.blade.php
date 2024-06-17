@@ -7,6 +7,8 @@
 <script src="{{ asset(mix('assets/vendor/libs/i18n/i18n.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/libs/typeahead-js/typeahead.js')) }}"></script>
 <script src="{{ asset(mix('assets/vendor/js/menu.js')) }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 @yield('vendor-script')
 <script src="{{ asset(mix('assets/vendor/libs/toastr/toastr.js')) }}"></script>
 <!-- END: Page Vendor JS-->

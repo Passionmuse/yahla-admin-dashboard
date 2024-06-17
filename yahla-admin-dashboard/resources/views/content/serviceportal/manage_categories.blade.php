@@ -144,22 +144,22 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editCategoryForm" enctype="multipart/form-data" method="POST"
-                    action="/online-shop/category/12">
-                    <input type="hidden" name="_token" value="yBXbrpL8jJ2w4HfrArx7J27WfXUMitWn9xZZF07T"> <input
-                        type="hidden" name="_method" value="PUT">
+                    action="/serviceportal/manage_categories/">
+                    @csrf
+                    @method('PUT')
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Category Name</label>
-                                <input type="text" id="editCategoryName" name="name" class="form-control"
+                                <input type="text" id="editCategoryName" required name="name" class="form-control"
                                     placeholder="Enter Category Name">
-                                <input type="hidden" name="catid" id="catid" value="">
+                                <input type="image" name="catid" id="catid" value="">
                             </div>
                         </div>
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="emailWithTitle" class="form-label">Thumbnail</label>
-                                <input type="file" id="emailWithTitle" name="thumbnail" class="form-control">
+                                <label for="image" class="form-label">Thumbnail</label>
+                                <input type="file" id="image" name="image" class="form-control">
                             </div>
                         </div>
                     </div>

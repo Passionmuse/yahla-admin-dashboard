@@ -81,6 +81,7 @@ class ManageCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        return response()->json(['success' => 'Category deleted successfully']);
     }
 
     /**

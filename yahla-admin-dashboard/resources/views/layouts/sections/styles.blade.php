@@ -19,7 +19,8 @@
 
 <!-- Vendor Styles -->
 @yield('vendor-style')
-<link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" />
+<!-- <link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" /> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/animate-css/animate.css') }}" />
 
 <!-- Page Styles -->
