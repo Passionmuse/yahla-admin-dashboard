@@ -4,8 +4,11 @@ namespace App\Http\Controllers\ServicePortal;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Helpers\Helpers;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+
 
 class ManageCategoryController extends Controller
 {
@@ -26,10 +29,18 @@ class ManageCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         //
-        dd($request);
+        $request_data = $request->validated();
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            Helpers::upload_file('/category_images',$file);
+        }
+        
+        dd($request_data);
+
         return Response()->back();
     }
 

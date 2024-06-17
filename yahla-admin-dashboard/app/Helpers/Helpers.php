@@ -198,4 +198,9 @@ class Helpers
     return $translation->translation ;
   }
 
+  public static function upload_file($folder_path, $file){
+    $randomName = Str::random(20) . $file->getClientOriginalName();
+    $file->storeAs($folder_path, $randomName, 'upload_file');
+    return $randomName;
+  }
 }

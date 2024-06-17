@@ -96,13 +96,13 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Category Name</label>
-                                <input type="text" id="nameWithTitle" name="name" class="form-control" placeholder="Enter Category Name">
+                                <input type="text" id="nameWithTitle" name="name" class="form-control" placeholder="Enter Category Name" required>
                             </div>
                         </div> 
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="emailWithTitle" class="form-label">Thumbnail</label>
-                                <input type="file" id="emailWithTitle" name="thumbnail" class="form-control">
+                                <label for="image" class="form-label">Thumbnail</label>
+                                <input type="file" id="image" name="image" class="form-control">
                             </div>
                         </div>
                     </div>
