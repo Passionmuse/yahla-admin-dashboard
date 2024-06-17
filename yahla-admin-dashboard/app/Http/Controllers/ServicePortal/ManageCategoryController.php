@@ -90,14 +90,7 @@ class ManageCategoryController extends Controller
      */
     public function destroy($category_id)
     {
-        $this->delete_categories($category_id);
+        Category::where(['_id' => $category_id])->delete();
         return response()->json(['success' => 'Category deleted successfully']);
-    }
-
-    public function delete_categories($category_id){
-        $child_categories = Category::where(['id' => $category_id])->children();
-        foreach ($child_categories as $key => $value) {
-            # code...
-        }
     }
 }

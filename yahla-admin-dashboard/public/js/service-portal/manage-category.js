@@ -29,7 +29,7 @@ var manage_category = function () {
                 , buttonsStyling: false
             }).then(function (result) {
                 if (result.value) {
-                    var category_id = e.target.parentElement.getAttribute('category-index');
+                    var category_id = e.target.parentElement.parentElement.parentElement.getAttribute('category-index');
                     send_request.delete_request(category_id);
                 }
             });
@@ -40,7 +40,6 @@ var manage_category = function () {
     var send_request = {
         delete_request: function (category_id) {
             var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            alert(csrfToken);
             $.ajax({
                 url: `/serviceportal/manage_categories/${category_id}`,
                 type: 'DELETE',
@@ -50,7 +49,11 @@ var manage_category = function () {
                 },
                 success: function (result) {
                     console.log('Delete request successful:', result);
-                    // Optionally, remove the deleted item from the DOM or perform other UI updates
+
+                    var parent_id = document.querySelector(`[category-index="${category_id}"]`).parentElement.parentElement.id;
+                    document.querySelector(`[category-index="${category_id}"]`).remove();
+
+                    service.refresh_categorytable(parent_id);
                 },
                 error: function (xhr, status, error) {
                     console.error('Delete request failed:', status, error);
@@ -61,7 +64,20 @@ var manage_category = function () {
 
     // some service functions 
     var service = {
+        //After adding or deleting a category, refresh the category table to update the number of rows (tr elements).
+        refresh_categorytable: function (table_id) {
+            var table_body = document.getElementById(table_id).querySelector('tbody');
 
+            var categories = table_body.querySelectorAll('tr');
+
+            if (categories.length) {
+                categories.forEach(function (element, index) {
+                    element.querySelector('td').innerText = index + 1;
+                    element.classList.remove('even', 'odd');
+                    element.classList.add(index % 2 ? 'even' : 'odd');
+                })
+            }
+        }
     }
 
     return {

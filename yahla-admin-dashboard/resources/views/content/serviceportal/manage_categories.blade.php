@@ -73,8 +73,8 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
             </thead>
             <tbody>
                 @foreach ($categories as $index => $categorie)
-                    <tr class="{{$index % 2 == 0 ? "even" : "odd"}}">
-                        <td class="">{{$index}}</td>
+                    <tr class="{{$index % 2 == 0 ? "even" : "odd"}}" category-index="{{$categorie->id}}">
+                        <td class="">{{$index + 1}}</td>
                         <td>{{$categorie->name}}</td>
                         <td><img style="border-radius: 100%;  height: 43px; width: 43px;"
                                 src="{{asset('uploads/' . $categorie->image)}}" alt="Category Thumbnail"></td>
@@ -83,12 +83,12 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
 
                         <td class="sorting_1">
                             <a href="javascript:;" class="btn btn-sm btn-icon item-edit edit-button" data-bs-toggle="modal"
-                                data-bs-target="#editCategoryModal" category-index="{{$categorie->id}}"><i
+                                data-bs-target="#editCategoryModal" ><i
                                     class="bx bxs-edit"></i></a>
 
                             <!--ssa-->
                             <button type="submit" class="btn btn-sm btn-icon delete" data-bs-toggle="tooltip"
-                                data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true" category-index="{{$categorie->id}}"
+                                data-bs-offset="0,4" data-bs-placement="top" data-bs-html="true"
                                 data-bs-original-title="Remove"><i class="bx bx-trash me-1"></i></button>
                             <!--ssa-->
                         </td>
