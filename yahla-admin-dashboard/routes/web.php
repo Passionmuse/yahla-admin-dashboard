@@ -123,6 +123,10 @@ use App\Http\Controllers\apps\Vip\vUserViewBilling;
 use App\Http\Controllers\apps\Vip\vUserViewConnections;
 use App\Http\Controllers\apps\Vip\vUserViewNotifications;
 use App\Http\Controllers\apps\Vip\vUserViewSecurity;
+
+//Oscar Aksoy Work Controller
+use App\Http\Controllers\ServicePortal\ManageCategoryController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -431,11 +435,14 @@ Route::get('delivery/setting/delivery_policy_term', [FoodPortalController::class
     });
     
     Route::prefix("serviceportal")->group(function(){
+
+        Route::resource('manage_categories',ManageCategoryController::class);
+        
          Route::get('addpricing',[ServicePortalController::class,'addpricing']);
          Route::get('prefix',[ServicePortalController::class,'prefix']);
           Route::get('reason',[ServicePortalController::class,'reason']);
            Route::get('policy_terms',[ServicePortalController::class,'policy_terms']);
-             Route::get('manage_categories',[ServicePortalController::class,'manage_categories']);
+            //  Route::get('manage_categories',[ServicePortalController::class,'manage_categories']);
              
              Route::get('manage_service',[ServicePortalController::class,'manage_service']);
              

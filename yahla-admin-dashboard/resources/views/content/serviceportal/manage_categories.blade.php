@@ -87,17 +87,18 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal-title"><span class="modal-title-span">Edit</span> Category</h5>
+                    <h5 class="modal-title" id="modal-title"><span class="modal-title-span">Add</span> Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="https://tacir.yekbun.net/online-shop/category" enctype="multipart/form-data" method="POST">
-                    <input type="hidden" name="_token" value="yBXbrpL8jJ2w4HfrArx7J27WfXUMitWn9xZZF07T">                    <div class="modal-body">
+                <form action="{{route('manage_categories.store')}}" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Category Name</label>
                                 <input type="text" id="nameWithTitle" name="name" class="form-control" placeholder="Enter Category Name">
                             </div>
-                        </div>
+                        </div> 
                         <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="emailWithTitle" class="form-label">Thumbnail</label>
@@ -107,7 +108,7 @@ https://cdn.jsdelivr.net/npm/dropify@0.2.2/dist/js/dropify.min.js
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
