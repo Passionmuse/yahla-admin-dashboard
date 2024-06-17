@@ -6,6 +6,7 @@ use Spatie\Activitylog\LogOptions;
 use Jenssegers\Mongodb\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
@@ -38,5 +39,23 @@ class Category extends Model
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id');
+    }
+
+    public function delete(array $options = [])
+    {
+        DB::transaction(function () {
+            // Recursively delete children
+            $this->deleteChildren($this);
+            // Delete the category itself
+            parent::delete();
+        });
+    }
+
+    protected function deleteChildren($category)
+    {
+        foreach ($category->children as $child) {
+            $this->deleteChildren($child);
+            $child->delete();
+        }
     }
 }

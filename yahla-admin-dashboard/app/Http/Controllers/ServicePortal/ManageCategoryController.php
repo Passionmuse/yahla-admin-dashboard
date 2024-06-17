@@ -5,9 +5,10 @@ namespace App\Http\Controllers\ServicePortal;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Helpers\Helpers;
-use GuzzleHttp\Psr7\Response;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 
 class ManageCategoryController extends Controller
@@ -19,7 +20,8 @@ class ManageCategoryController extends Controller
      */
     public function index()
     {
-        return view('content.serviceportal.manage_categories');
+        $categories = Category::all();
+        return view('content.serviceportal.manage_categories')->with(['categories' => $categories]);
     }
 
 
@@ -27,7 +29,7 @@ class ManageCategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return 
      */
     public function store(StoreCategoryRequest $request)
     {
@@ -36,12 +38,15 @@ class ManageCategoryController extends Controller
 
         if($request->hasFile('image')){
             $file = $request->file('image');
-            Helpers::upload_file('/category_images',$file);
+            $request_data['image'] = '/category_images/' . Helpers::upload_file('/category_images',$file);
+        } else {
+            $request_data['image'] = "/category_images/default.jpg";
         }
         
-        dd($request_data);
+        
+        Category::create($request_data);
 
-        return Response()->back();
+        return back();
     }
 
     /**
@@ -81,11 +86,18 @@ class ManageCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  $category_id
      */
-    public function destroy(Category $category)
+    public function destroy($category_id)
     {
-        //
+        $this->delete_categories($category_id);
+        return response()->json(['success' => 'Category deleted successfully']);
+    }
+
+    public function delete_categories($category_id){
+        $child_categories = Category::where(['id' => $category_id])->children();
+        foreach ($child_categories as $key => $value) {
+            # code...
+        }
     }
 }
